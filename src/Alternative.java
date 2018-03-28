@@ -13,4 +13,14 @@ public class Alternative {
 	{
 		return name;
 	}
+	
+	public void addSuccess(int success)
+	{
+		successLevel.add(success);
+	}
+	
+	public ArrayList<Integer> getSuccess()
+	{
+		return successLevel;
+	}
 }

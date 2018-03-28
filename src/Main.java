@@ -2,14 +2,16 @@ import java.util.*;
 public class Main {
 
 	static Scanner scan = new Scanner(System.in);
-	private ArrayList<String> alternatives = new ArrayList<String>();
+	private static ArrayList<Alternative> alternatives = new ArrayList<Alternative>();
+	private static HashMap<String, Integer> criteria = new HashMap<String, Integer>();
+	
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		getAlternatives();
-		/*getCriteriaAndWeights();
+		getCriteriaAndWeights();
 		getAlternativeSuccess();
-		multiply();*/
+		//multiply();*/
 		
 		
 		
@@ -21,14 +23,68 @@ public class Main {
 	{
 		System.out.println("Please input the name of one of the alternatives that you are considering.");
 		System.out.println("If you have inputted all of your alternatives already, type \"done\".");
-		
-		String input = scan.nextLine();
-		
-		if(!input.equals("done"))
+		int i = 1;
+		while(true)
 		{
+			System.out.println("Alternative " + i + ": ");
+			String input = scan.next();
 			
+			if(input.equals("done"))
+			{
+				break;
+			}
+			
+			Alternative alt = new Alternative(input);
+			alternatives.add(alt);
+			i++;
 		}
 		
+	}
+	
+	private static void getCriteriaAndWeights()
+	{
+		System.out.println("Now, please enter each of the criteria that you will use to evaluate the alternatives.");
+		System.out.println("After each criteria, enter a number from 1-100 to denote the importance of that criteria, with higher values corresponding to higher importance.");
+		System.out.println("Type \"done\" when you are finished");
+		while(true)
+		{
+			System.out.println("Criteria: ");
+			String input  = scan.next();
+			if(input.equals("done"))
+			{
+				break;
+			}
+			System.out.println("Weight: ");
+			while(!scan.hasNextInt()) 
+			{
+				System.out.println("Please enter a number.");
+			    scan.next();
+			}
+			Integer weight = scan.nextInt();
+			criteria.put(input, weight);
+		}
+	}
+	
+	private static void getAlternativeSuccess()
+	{
+		System.out.println("Great! Now, you will need to evaluate how well each alternative fulfills the criteria.");
+		System.out.println("Enter a number from 1-100. A higher number should correspond to better fulfillment of the criteria.");
+		for(Alternative alternative: alternatives)
+		{
+			System.out.println("Alternative: " + alternative.getName());
+			for(String theCriteria: criteria.keySet())
+			{
+				System.out.println("Criteria: " + theCriteria);
+				System.out.println("Enter a number: ");
+				while(!scan.hasNextInt()) 
+				{
+					System.out.println("Please enter a number.");
+				    scan.next();
+				}
+				int success = scan.nextInt();
+				alternative.addSuccess(success);
+			}
+		}
 	}
 	
 	/*String ans = "";
