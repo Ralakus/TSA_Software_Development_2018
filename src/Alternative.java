@@ -3,6 +3,7 @@ public class Alternative {
 
 	private String name;
 	private ArrayList<Integer> successLevel = new ArrayList<Integer>();
+	private int total = 0;
 	
 	public Alternative(String name)
 	{
@@ -22,5 +23,15 @@ public class Alternative {
 	public ArrayList<Integer> getSuccess()
 	{
 		return successLevel;
+	}
+	
+	public void addToTotal(int num)
+	{
+		total+=num;
+	}
+	
+	public int getTotal()
+	{
+		return total;
 	}
 }

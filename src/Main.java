@@ -11,7 +11,7 @@ public class Main {
 		getAlternatives();
 		getCriteriaAndWeights();
 		getAlternativeSuccess();
-		//multiply();*/
+		multiply();
 		
 		
 		
@@ -87,6 +87,34 @@ public class Main {
 		}
 	}
 	
+	private static void multiply()
+	{
+		
+		for(Alternative alternative: alternatives)
+		{
+			int i = 0;
+			for(int critWeight: criteria.values())
+			{
+				alternative.addToTotal(critWeight * alternative.getSuccess().get(i));
+				i++;
+			}
+		}
+		System.out.println("Great job. We have your results. Here are the point values for each alternative: ");
+		int highest = 0;
+		String highestAlt = "";
+		for(Alternative alternative: alternatives)
+		{
+			System.out.println(alternative.getName() + ": " + alternative.getTotal());
+			if(highest < alternative.getTotal())
+			{
+				highest = alternative.getTotal();
+				highestAlt = alternative.getName();
+			}
+		}
+		System.out.println();
+		System.out.println("Based on these results, we recommend this alternative: ");
+		System.out.println(highestAlt);
+	}
 	/*String ans = "";
 	while(!scan.hasNextLine()) 
 	{
