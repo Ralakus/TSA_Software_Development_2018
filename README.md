@@ -13,3 +13,6 @@ to add a file, type "git add . " it should add all changes to git
 After that, it is recommended to type "git status" to see what will change
 Then you wanna type "git commit -m "<insert message about what was changed>"" to commit the changes
 After you commit, you have to type "git push" to push the changes onto the repository.
+
+BUGS:
+Scanner splits string into different words creating different alternative listings
