@@ -5,11 +5,14 @@
 
 int main(){
 
+    //Create variables that will be used quite commonly
     std::string InStr;
     std::string WorkingStr;
     uint32 IteratorVar = 0;
     uint8 WorkingUint8 = 0;
+    //==========================
 
+    //Takes in and repeats problem
     std::cout << "Enter your problem: ";
 
     std::getline(std::cin, InStr);
@@ -17,12 +20,13 @@ int main(){
     DecisionMaker::Instance().SetProblem(InStr);
 
     std::cout << "Problem is: \"" << InStr << "\"" << std::endl;
+    //==========================
 
     std::cout << std::endl << "Enter your list of criteria that the problem has" << std::endl << "Type \"done\" when you're finished entering your criteria" << std::endl << std::endl;
 
     InStr.clear();
 
-    while(![&]() -> bool {
+    while(![&]() -> bool { //Boolean lambda that takes in input for each criteria
 
         IteratorVar++;
 
@@ -32,7 +36,7 @@ int main(){
 
         WorkingStr = InStr;
 
-        std::transform(WorkingStr.begin(), WorkingStr.end(), WorkingStr.begin(), ::tolower);
+        std::transform(WorkingStr.begin(), WorkingStr.end(), WorkingStr.begin(), ::tolower); //Makes all characters in WorkingStr lowercase to decasesensitize it
 
         if(WorkingStr == "done" && DecisionMaker::Instance().GetCriteria().size() > 0){
             return true;
@@ -60,19 +64,19 @@ int main(){
 
         WorkingStr = InStr;
 
-        std::transform(WorkingStr.begin(), WorkingStr.end(), WorkingStr.begin(), ::tolower);
+        std::transform(WorkingStr.begin(), WorkingStr.end(), WorkingStr.begin(), ::tolower);//Makes all characters in WorkingStr lowercase to decasesensitize it
 
         if(WorkingStr == "done" && DecisionMaker::Instance().GetChoices().size() > 0){
             return true;
         }
         else{
             std::string ChoiceString = InStr;
-            for(size_t i = 0; i < DecisionMaker::Instance().GetCriteria().size(); i++){
-                DecisionMaker::Instance().AddChoice(InStr).AddWeight([&]() -> uint8 {
+            for(size_t i = 0; i < DecisionMaker::Instance().GetCriteria().size(); i++){ //Loop that loops through all the criteria after entering a choice to get the weights
+                DecisionMaker::Instance().AddChoice(InStr).AddWeight([&]() -> uint8 { //uint8 Lambda that gets weight value
 
                     std::cout << "Enter how well \"" << ChoiceString << "\" fits criteria \"" << DecisionMaker::Instance().GetCriteria()[i] << "\"" << std::endl;
 
-                    while(![&]()->bool{
+                    while(![&]()->bool{ //Boolean Lambda that gets input
                         std::getline(std::cin, InStr);
                         try {
                             WorkingUint8 = std::stoul(InStr);

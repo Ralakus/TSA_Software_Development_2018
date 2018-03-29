@@ -54,13 +54,13 @@ public:
         Choice* Best = nullptr;
 
         size_t i = 0;
-        for(auto&& Choice : m_Choices){
+        for(auto&& Choice : m_Choices){ //Loops through all the choices
             i++;
             uint32 Total = 0;
             for(auto Weight : Choice.GetWeights()){
-                Total += Weight;
+                Total += Weight; //Adds up weight from each choice
             }
-            if(Total > Highest){
+            if(Total > Highest){ //If the total is the highest, that choice becomes the best one
                 Highest = Total;
                 Best = &Choice;
                 Index = i;
