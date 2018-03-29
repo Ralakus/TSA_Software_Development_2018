@@ -109,7 +109,9 @@ int main(){
 
     }());
 
-    std::cout << std::endl << "Best choice is \"" << DecisionMaker::Instance().GetBestChoice()->GetContent() << "\" for \"" << DecisionMaker::Instance().GetProblem() << "\"" << std::endl;
+    std::cout << std::endl << "Best choice is \"" << DecisionMaker::Instance().GetBestChoice()->GetContent() << "\" for \"" << DecisionMaker::Instance().GetProblem() << "\"" << std::endl << "Press enter to close..." << std::endl;
+
+    std::cin.get();
 
     return 0;
 
