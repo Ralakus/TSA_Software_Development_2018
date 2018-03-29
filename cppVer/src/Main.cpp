@@ -71,8 +71,9 @@ int main(){
         }
         else{
             std::string ChoiceString = InStr;
+            DecisionMaker::Instance().AddChoice(InStr);
             for(size_t i = 0; i < DecisionMaker::Instance().GetCriteria().size(); i++){ //Loop that loops through all the criteria after entering a choice to get the weights
-                DecisionMaker::Instance().AddChoice(InStr).AddWeight([&]() -> uint8 { //uint8 Lambda that gets weight value
+                DecisionMaker::Instance().GetChoices().back().AddWeight([&]() -> uint8 { //uint8 Lambda that gets weight value
 
                     std::cout << "Enter how well \"" << ChoiceString << "\" fits criteria \"" << DecisionMaker::Instance().GetCriteria()[i] << "\"" << std::endl;
 

@@ -27,7 +27,7 @@ public:
 
 
     Choice& AddChoice(const std::string Content){
-        m_Choices.emplace_back(Content);
+        m_Choices.push_back(Choice(Content));
         return m_Choices.back();
     }
 

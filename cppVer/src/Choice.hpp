@@ -7,7 +7,7 @@
 class Choice {
 
     std::string m_Content;
-    std::vector<uint8> m_Weights;
+    mutable std::vector<uint8> m_Weights;
 
 public:
 
@@ -16,7 +16,7 @@ public:
 
     const std::vector<uint8>& GetWeights() const { return m_Weights; }
 
-    void AddWeight(uint8 Weight){
+    void AddWeight(uint8 Weight) const {
         m_Weights.push_back(Weight);
     }
 
