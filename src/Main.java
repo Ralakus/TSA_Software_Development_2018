@@ -27,7 +27,7 @@ public class Main {
 		while(true)
 		{
 			System.out.println("Alternative " + i + ": ");
-			String input = scan.next();
+			String input = readLine("");
 			
 			if(input.equals("done"))
 			{
@@ -49,18 +49,13 @@ public class Main {
 		while(true)
 		{
 			System.out.println("Criteria: ");
-			String input  = scan.next();
+			String input  = readLine("");
 			if(input.equals("done"))
 			{
 				break;
 			}
 			System.out.println("Weight: ");
-			while(!scan.hasNextInt()) 
-			{
-				System.out.println("Please enter a number.");
-			    scan.next();
-			}
-			Integer weight = scan.nextInt();
+			Integer weight = readInt("");
 			criteria.put(input, weight);
 		}
 	}
@@ -75,13 +70,7 @@ public class Main {
 			for(String theCriteria: criteria.keySet())
 			{
 				System.out.println("Criteria: " + theCriteria);
-				System.out.println("Enter a number: ");
-				while(!scan.hasNextInt()) 
-				{
-					System.out.println("Please enter a number.");
-				    scan.next();
-				}
-				int success = scan.nextInt();
+				int success = readInt("");
 				alternative.addSuccess(success);
 			}
 		}
@@ -115,12 +104,22 @@ public class Main {
 		System.out.println("Based on these results, we recommend this alternative: ");
 		System.out.println(highestAlt);
 	}
-	/*String ans = "";
-	while(!scan.hasNextLine()) 
-	{
-	    scan.next();
+	public static String readLine(String prompt){
+		System.out.print(prompt);
+		return scan.nextLine();
 	}
-	ans = scan.nextLine();*/
+	public static int readInt(String prompt){
+
+		while(true){
+			String input = readLine(prompt);
+			try {
+				int n = Integer.parseInt(input);
+				return n;
+			} catch (Exception e){
+
+			}
+		}
+	}
 	
 	
 	
