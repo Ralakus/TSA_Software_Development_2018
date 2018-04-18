@@ -54,6 +54,8 @@ public class Main {
 	
 	private static void getGroupDecision()
 	{
+		space();
+		readLine("We have determined the best group decision. Please press enter for the final result.");
 		int[] totals = new int[users.size()];
 		
 		for(User user:users)
@@ -76,7 +78,7 @@ public class Main {
 			}
 		}
 		
-		System.out.println("Taking into account each person's input, the best group decision would be " + users.get(0).getAlternatives().get(highestIndex).getName());
+		System.out.println("Taking into account each person's input, the best group decision would be \"" + users.get(0).getAlternatives().get(highestIndex).getName() + "\"");
 	}
 	
 	private static void makeUsers()
@@ -131,7 +133,7 @@ public class Main {
 		while(true)
 		{
 			String input  = readLine("Criteria: ");
-			if(input.equals("done"))
+			if(input.equalsIgnoreCase("done"))
 			{
 				break;
 			}
@@ -143,7 +145,7 @@ public class Main {
 				{
 					break;
 				}
-				System.out.println("Please enter a number between 1 and 100)");
+				System.out.println("Please enter a number between 1 and 100");
 			}
 			
 			user.addCriteria(input, weight);
@@ -157,7 +159,7 @@ public class Main {
 		System.out.println("Enter a number from 1-100. A higher number should correspond to better fulfillment of the criteria.");
 		for(Alternative alternative: user.getAlternatives())
 		{
-			System.out.println("Alternative: " + alternative.getName());
+			
 			for(String theCriteria: user.getCriteria().keySet())
 			{
 				System.out.println("How well does the \"" + alternative.getName() + "\" alternative fulfill the \"" + theCriteria + "\" criteria? ");
@@ -169,7 +171,7 @@ public class Main {
 					 {
 						  break;
 					 }
-					System.out.println("Please enter a number between 1 and 100)");
+					System.out.println("Please enter a number between 1 and 100");
 				}
 				
 				alternative.addSuccess(success);

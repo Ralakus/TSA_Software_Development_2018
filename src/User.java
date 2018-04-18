@@ -3,8 +3,8 @@ import java.util.HashMap;
 
 public class User {
 
-	private static HashMap<String, Integer> criteria = new HashMap<String, Integer>();
-	private static ArrayList<Alternative> alternatives = new ArrayList<Alternative>();
+	private HashMap<String, Integer> criteria = new HashMap<String, Integer>();
+	private ArrayList<Alternative> alternatives = new ArrayList<Alternative>();
 	
 	public User()
 	{
