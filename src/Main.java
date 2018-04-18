@@ -37,25 +37,25 @@ public class Main {
 		if(num > 0)
 		{
 			System.out.println("Group member " + num + " has completed their part.");
-			readLine("Please switch to the next group member, and press enter to continue. ");
+			pressEnter("Please switch to the next group member, and press enter to continue. ");
 		}
 		else
 		{
 			System.out.println("Now it is time for each group member to give their input. Pick one group member to begin.");
-			readLine("Press enter to continue.");
+			pressEnter("Press enter to continue.");
 		}
 	}
 	
 	private static void initialize()
 	{
 		System.out.println("Welcome to Decision Maker! This app will help you make decisions, as an individual or group.");
-		readLine("Press enter to continue. ");
+		pressEnter("Press enter to continue. ");
 	}
 	
 	private static void getGroupDecision()
 	{
 		space();
-		readLine("We have determined the best group decision. Please press enter for the final result.");
+		pressEnter("We have determined the best group decision. Please press enter for the final result.");
 		int[] totals = new int[users.size()];
 		
 		for(User user:users)
@@ -191,7 +191,7 @@ public class Main {
 				i++;
 			}
 		}
-		readLine("Great job. We have your results. Press enter to continue.");
+		pressEnter("Great job. We have your results. Press enter to continue.");
 		System.out.println("Here are the point values for each alternative: ");
 		int highest = 0;
 		String highestAlt = "";
@@ -207,16 +207,27 @@ public class Main {
 		System.out.println();
 		System.out.println("Based on these results, you would most likely prefer this alternative: ");
 		System.out.println(highestAlt);
-		readLine("Press enter to continue.");
+		pressEnter("Press enter to continue.");
 	}
-	public static String readLine(String prompt){
+	public static String pressEnter(String prompt){
 		System.out.print(prompt);
 		return scan.nextLine();
+	}
+	public static String readLine(String prompt){
+		while(true){
+			String input = pressEnter(prompt);
+			if(!input.equals(""))
+			{
+				return input;
+
+			}
+			System.out.println("Please enter a valid input.");
+		}
 	}
 	public static int readInt(String prompt){
 
 		while(true){
-			String input = readLine(prompt);
+			String input = pressEnter(prompt);
 			try {
 				int n = Integer.parseInt(input);
 				return n;
