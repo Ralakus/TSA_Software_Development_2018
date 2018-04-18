@@ -28,6 +28,9 @@ public class Main {
 		{
 			getGroupDecision();
 		}
+
+        System.out.println("Press enter to close...");
+        pressEnter();
 		
 	}
 	
