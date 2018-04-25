@@ -1,2 +1,2 @@
 @echo off
-start java Main
+start java -cp Project.jar Main
