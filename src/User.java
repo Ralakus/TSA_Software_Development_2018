@@ -31,5 +31,6 @@ public class User {
 	{
 		criteria.put(name, (Integer) weight);
 	}
+
 }
 
