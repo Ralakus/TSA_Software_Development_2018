@@ -102,26 +102,26 @@ public class Main {
 	private static void getAlternatives()
 	{
 		space();
-		System.out.println("Please input the name of all of the alternatives that you are considering.");
+		System.out.println("Please input the name of all of the choices that you are considering.");
 		if(users.size() > 1)
 		{
-			System.out.println("Please note that the entire group should agree on these alternatives.");
+			System.out.println("Please note that the entire group should agree on these choices.");
 		}
-		System.out.println("Once you have inputted all of your alternatives, type \"done\".");
+		System.out.println("Once you have inputted all of your choices, type \"done\".");
         space();
 		int i = 1;
 		ArrayList<String> alternatives = new ArrayList<String>();
 		while(true)
 		{
-			String input = readLine("Alternative " + i + ": ");
+			String input = readLine("Choice " + i + ": ");
 			
-			if(input.equalsIgnoreCase("done"))
+			if(input.replaceAll("\\s","").equalsIgnoreCase("done"))
 			{
 				if(alternatives.size() > 1){
                     break;
                 }
                 else{
-                    System.out.println("Enter at least two alternatives");
+                    System.out.println("Enter at least two choices");
                     i--;
                 }
 			}
@@ -143,41 +143,46 @@ public class Main {
 	private static void getCriteriaAndWeights(User user)
 	{
 		space();
-		System.out.println("Please enter each of the criteria that you will use to evaluate the alternatives.");
+		System.out.println("Please enter each of the criteria that you will use to evaluate the choices.");
 		System.out.println("After each criteria, enter a number from 1-100 to denote the importance of that criteria, with higher values corresponding to higher importance.");
 		System.out.println("Type \"done\" when you are finished");
         space();
+		boolean notEnoughCriteria = false;
 		while(true)
 		{
+			notEnoughCriteria = false;
 			String input  = readLine("Criteria: ");
-			if(input.equalsIgnoreCase("done"))
+			if(input.replaceAll("\\s","").equalsIgnoreCase("done"))
 			{
 				if(user.getCriteria().size() > 0){
                     break; 
                 }
                 else{
-                    System.out.println("Enter at least one criteria");
+					System.out.println("Enter at least one criteria");
+					notEnoughCriteria = true;
                 }
 			}
-			int weight = 0;
-			while(true)
-			{
-				weight = readInt("Weight: ");
-				if(!(weight < 0 || weight > 100))
+			if(!notEnoughCriteria){
+				int weight = 0;
+				while(true)
 				{
-					break;
+					weight = readInt("Weight: ");
+					if(!(weight < 0 || weight > 100))
+					{
+						break;
+					}
+					System.out.println("Please enter a number between 1 and 100");
 				}
-				System.out.println("Please enter a number between 1 and 100");
+				
+				user.addCriteria(input, weight);
 			}
-			
-			user.addCriteria(input, weight);
 		}
 	}
 	
 	private static void getAlternativeSuccess(User user)
 	{
 		space();
-		System.out.println("Great! Now, you will need to evaluate how well each alternative fulfills the criteria.");
+		System.out.println("Great! Now, you will need to evaluate how well each choice fulfills the criteria.");
 		System.out.println("Enter a number from 1-100. A higher number should correspond to better fulfillment of the criteria.");
         space();
 		for(Alternative alternative: user.getAlternatives())
@@ -185,7 +190,7 @@ public class Main {
 			
 			for(String theCriteria: user.getCriteria().keySet())
 			{
-				System.out.println("How well does the \"" + alternative.getName() + "\" alternative fulfill the \"" + theCriteria + "\" criteria? ");
+				System.out.println("How well does the \"" + alternative.getName() + "\" choice fulfill the \"" + theCriteria + "\" criteria? ");
 				int success;
 				while(true)
 				{
@@ -214,8 +219,10 @@ public class Main {
 				i++;
 			}
 		}
+		space();
 		pressEnter("Great job. We have your results. Press enter to continue.");
-		System.out.println("Here are the point values for each alternative: ");
+		space();
+		System.out.println("Here are the point values for each choice: \n");
 		int highest = -1;
 		String highestAlt = "";
 		for(Alternative alternative: user.getAlternatives())
@@ -228,7 +235,7 @@ public class Main {
 			}
 		}
 		System.out.println();
-		System.out.println("Based on these results, you would most likely prefer this alternative: \n");
+		System.out.println("Based on these results, you would most likely prefer this choice: \n");
 		System.out.println(highestAlt + '\n');
         if(users.size() > 1){
 		    pressEnter("Press enter to continue.");
@@ -252,7 +259,7 @@ public class Main {
 	public static int readInt(String prompt){
 
 		while(true){
-			String input = pressEnter(prompt);
+			String input = pressEnter(prompt).replaceAll("\\s","");
 			try {
 				int n = Integer.parseInt(input);
 				return n;
