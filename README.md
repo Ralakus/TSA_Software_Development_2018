@@ -1,12 +1,10 @@
-# TSA_Software_Development_2018
-Do not edit anything ye public people, it is already hard enough to get GitHub to work and having random people mess with our private project
-for our class isn't good.
+# TSA Software Development 2018 :heart:
 
-# What is this about?
+## What is this about?
 The project is meant to ease the process of making a decision by making the user(s) thoroughly go through the process of making a decision step-by-step 
 with the guidance of the program.
 
-# TO ANYONE IN THE TEAM:
+## TO ANYONE IN THE TEAM:
 How to use GitHub.
 
 * Find a directory you want this repository. 
